@@ -1,0 +1,235 @@
+2022-04-05 20:01:06,216 - static - ERROR - Exception on /api/v1/ [GET]
+Traceback (most recent call last):
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3256, in _wrap_pool_connect
+    return fn()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\impl.py", line 146, in _do_get
+    self._dec_overflow()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\impl.py", line 143, in _do_get
+    return self._create_connection()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 256, in _create_connection
+    return _ConnectionRecord(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 371, in __init__
+    self.__connect()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 666, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 661, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\create.py", line 590, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\default.py", line 597, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "D:\ZMC\github\todoapp\lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask_restful\__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "D:\ZMC\github\Todo-Backend\static\todoApp\views\todo_list_view.py", line 16, in get
+    serialize_instance = TodoListSerializer(Todo.get_all())
+  File "D:\ZMC\github\Todo-Backend\static\todoApp\model\todo_list_model.py", line 12, in get_all
+    return Todo.query.all()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\query.py", line 2759, in all
+    return self._iter().all()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\query.py", line 2894, in _iter
+    result = self.session.execute(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\session.py", line 1532, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3210, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3289, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3259, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 2106, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3256, in _wrap_pool_connect
+    return fn()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\impl.py", line 146, in _do_get
+    self._dec_overflow()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\impl.py", line 143, in _do_get
+    return self._create_connection()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 256, in _create_connection
+    return _ConnectionRecord(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 371, in __init__
+    self.__connect()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 666, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 661, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\create.py", line 590, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\default.py", line 597, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "D:\ZMC\github\todoapp\lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-04-05 20:01:35,137 - static - ERROR - Exception on /api/v1/ [GET]
+Traceback (most recent call last):
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3256, in _wrap_pool_connect
+    return fn()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\impl.py", line 146, in _do_get
+    self._dec_overflow()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\impl.py", line 143, in _do_get
+    return self._create_connection()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 256, in _create_connection
+    return _ConnectionRecord(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 371, in __init__
+    self.__connect()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 666, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 661, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\create.py", line 590, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\default.py", line 597, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "D:\ZMC\github\todoapp\lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask\views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "D:\ZMC\github\todoapp\lib\site-packages\flask_restful\__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "D:\ZMC\github\Todo-Backend\static\todoApp\views\todo_list_view.py", line 16, in get
+    serialize_instance = TodoListSerializer(Todo.get_all())
+  File "D:\ZMC\github\Todo-Backend\static\todoApp\model\todo_list_model.py", line 12, in get_all
+    return Todo.query.all()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\query.py", line 2759, in all
+    return self._iter().all()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\query.py", line 2894, in _iter
+    result = self.session.execute(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\session.py", line 1532, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\orm\session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3210, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3289, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3259, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 2106, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\base.py", line 3256, in _wrap_pool_connect
+    return fn()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\impl.py", line 146, in _do_get
+    self._dec_overflow()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\impl.py", line 143, in _do_get
+    return self._create_connection()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 256, in _create_connection
+    return _ConnectionRecord(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 371, in __init__
+    self.__connect()
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 666, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\pool\base.py", line 661, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\create.py", line 590, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "D:\ZMC\github\todoapp\lib\site-packages\sqlalchemy\engine\default.py", line 597, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "D:\ZMC\github\todoapp\lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-04-05 20:01:43,434 - static.todoApp.views.todo_list_view - DEBUG - serialize_instance called here
