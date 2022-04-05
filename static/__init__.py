@@ -1,9 +1,17 @@
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+import logging
+
+from static.logger_config import custom_logger
+
+
 
 db = SQLAlchemy()
 migrate = Migrate()
+
+logger = logging.getLogger('static')
+logger = custom_logger(logger)
 
 
 def create_app(test_config=None):
