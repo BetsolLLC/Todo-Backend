@@ -13,39 +13,73 @@ logger = logging.getLogger(__name__)
 class TodoListView(Resource):
 
     def get(self):
-        serialize_instance = TodoListSerializer(Todo.get_all())
-        logger.debug(f"serialize_instance called here")
-        if serialize_instance.is_valid():
-            data = {
-                "todo_list": serialize_instance.data(),
-            }
-            return jsonify(data), 200
+        try:
+            serialize_instance = TodoListSerializer(Todo.get_all())
+            logger.debug(f"serialize_instance called here")
+            if serialize_instance.is_valid():
+                data = {
+                    "todo_list": serialize_instance.data(),
+                }
+                return jsonify(data), 200
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return {"message": "something went wrong"}, 500
+
 
     def post(self):
-        title = request.form.get("title") or request.form.get("title")
-        Todo.create(title)
-        logger.info("New task created")
-        # return redirect(url_for("home"))
-        return {"message": "successfully added task"}, 201
+        try:
+            title = request.form.get("title")
+            Todo.create(title)
+            logger.info("New task created")
+
+            return {"message": "successfully added task"}, 201
+        except KeyError:
+            return {"message": "missing title"}, 400
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return {"message": "something went wrong"}, 500
+
 
     def put(self):
-        todo_id = request.form.get("todo_id") or request.form.get("todo_id")
-        title = request.form.get("title") or request.form.get("title")
-        Todo.update(todo_id,title)
-        logger.info("Task Updated")
-        # return redirect(url_for("home"))
-        return {"message": "successfully updated task"}, 200
+        try:
+            todo_id = request.form.get("todo_id")
+            title = request.form.get("title")
+            Todo.update(todo_id, title)
+
+            return {"message": "successfully updated task"}, 200
+        except KeyError:
+            return {"message": "missing title"}, 400
+        except ValueError as e:
+            logger.error(f"Error: {e}")
+            return {"message": "Todo with the request id not found"}, 400
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return {"message": "something went wrong"}, 500
+
  
     def patch(self):
-        todo_id = request.form.get("todo_id") or request.form.get("todo_id")
-        Todo.update_complete(todo_id)
-        logger.info("Task Completed")
-        # return redirect(url_for("home"))
-        return {"message": "successfully completed task"}, 200
+        try:
+            todo_id = request.form.get("todo_id") or request.form.get("todo_id")
+            Todo.update_complete(todo_id)
+            logger.info("Task Completed")
+            # return redirect(url_for("home"))
+            return {"message": "successfully completed task"}, 200
+        except KeyError:
+            return {"message": "missing title"}, 400
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return {"message": "something went wrong"}, 500
+        
 
     def delete(self):
-        todo_id = request.form.get("todo_id") or request.form.get("todo_id")
-        Todo.delete(todo_id) 
-        logger.info("Task Deleted")
-        # return redirect(url_for("home"))
-        return {"message": "successfully deleted task"}, 200
+        try:
+            todo_id = request.form.get("todo_id") or request.form.get("todo_id")
+            Todo.delete(todo_id) 
+            logger.info("Task Deleted")
+            # return redirect(url_for("home"))
+            return {"message": "successfully deleted task"}, 200
+        except KeyError:
+            return {"message": "missing title"}, 400
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return {"message": "something went wrong"}, 500

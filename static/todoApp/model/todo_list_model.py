@@ -25,6 +25,8 @@ class Todo(db.Model):
     @staticmethod
     def update(task_id, title):
         todo = Todo.get_by_id(task_id)
+        if todo is None :
+            raise ValueError("Todo with the given id not found")
         todo.title = title
         db.session.commit()
         return todo
