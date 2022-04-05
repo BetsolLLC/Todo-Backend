@@ -21,13 +21,34 @@ class Todo(db.Model):
     complete = db.Column(db.Boolean, default=False)
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp())
 
+class TodoListSerializer:
+    def __init__(self, todo_list):
+        self.todo_list = todo_list
 
-# Default Hello World
+    def is_valid(self):
+        return self.todo_list is not None
+
+    def data(self):
+        if self.is_valid():
+            result = [
+                {
+                    "id": i.id,
+                    "title": i.title,
+                    "completed": i.complete,
+                    "date_modified": i.date_modified,
+                } for i in self.todo_list]
+            return result
+        else:
+            return None
+# Routes
 @app.route("/")
 def home():
-    todo_list = Todo.query.all()
-    print(todo_list)
-    return jsonify(todo_list)
+    serialize_instance = TodoListSerializer(Todo.query.all())
+    if serialize_instance.is_valid():
+        data = {
+            "todo_list": serialize_instance.data(),
+        }
+        return jsonify(data), 200
 
 
 @app.route("/add", methods=["POST"])
@@ -36,7 +57,7 @@ def add():
     new_todo = Todo(title=title, complete=False)
     db.session.add(new_todo)
     db.session.commit()
-    return redirect(url_for("home"))
+    return {"message":"successfully created"}, 200
 
 
 @app.route("/update/<int:todo_id>")
@@ -44,7 +65,7 @@ def update(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
     db.session.commit()
-    return redirect(url_for("home"))
+    return {"message":"successfully completed"}, 200
 
 
 @app.route("/delete/<int:todo_id>")
@@ -52,7 +73,7 @@ def delete(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)
     db.session.commit()
-    return redirect(url_for("home"))
+    return {"message":"successfully deleted"}, 200
 
 
 if __name__ == "__main__":
