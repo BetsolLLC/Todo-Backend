@@ -1,7 +1,8 @@
 from flask import request, jsonify
 from flask_restful import Resource
 from flask_sqlalchemy import SQLAlchemy
-from static import db
+
+from static import cors
 from static.todoApp.model.todo_list_model import Todo
 from static.todoApp.utils.serialize_data import TodoListSerializer
 import logging
@@ -11,6 +12,8 @@ logger = logging.getLogger(__name__)
 
 
 class TodoListView(Resource):
+    def before_request(self, *args, **kwargs):
+        return cors.before_request(self, *args, **kwargs)
 
     def get(self):
         try:
@@ -28,13 +31,19 @@ class TodoListView(Resource):
 
     def post(self):
         try:
-            title = request.form.get("title")
+            title = request.get_json(force=True)['title'] or request.form.get("title")
+            if title == "":
+                raise ValueError("title is required")
+
             Todo.create(title)
             logger.info("New task created")
 
             return {"message": "successfully added task"}, 201
         except KeyError:
             return {"message": "missing title"}, 400
+        except ValueError as e:
+            logger.error(f"Error: {e}")
+            return {"message": "missing title"}, 500
         except Exception as e:
             logger.error(f"Error: {e}")
             return {"message": "something went wrong"}, 500
@@ -42,8 +51,9 @@ class TodoListView(Resource):
 
     def put(self):
         try:
-            todo_id = request.form.get("todo_id")
-            title = request.form.get("title")
+            todo_id = request.get_json(force=True)['todo_id'] or request.form.get("todo_id")
+            title = request.get_json(force=True)['title'] or request.form.get("title")
+
             Todo.update(todo_id, title)
 
             return {"message": "successfully updated task"}, 200
@@ -59,7 +69,7 @@ class TodoListView(Resource):
  
     def patch(self):
         try:
-            todo_id = request.form.get("todo_id") or request.form.get("todo_id")
+            todo_id = request.get_json(force=True)['todo_id'] or request.form.get("todo_id")
             Todo.update_complete(todo_id)
             logger.info("Task Completed")
             # return redirect(url_for("home"))
@@ -73,7 +83,7 @@ class TodoListView(Resource):
 
     def delete(self):
         try:
-            todo_id = request.form.get("todo_id") or request.form.get("todo_id")
+            todo_id = request.get_json(force=True)['todo_id'] or request.form.get("todo_id")
             Todo.delete(todo_id) 
             logger.info("Task Deleted")
             # return redirect(url_for("home"))
