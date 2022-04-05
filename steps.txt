@@ -1,0 +1,11 @@
+# To create a migration repository, run:
+#   flask db init
+
+# To add updates to the database, use the following command:
+# flask db migrate -m "Your update message"
+
+# To apply the most recent migration, run:
+# flask db upgrade
+
+# To start the flask app and run it in debug mode, run:
+# flask run --host=localhost --port=5000
