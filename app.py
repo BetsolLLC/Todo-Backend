@@ -60,7 +60,7 @@ def add():
     return {"message":"successfully created"}, 200
 
 
-@app.route("/update/<int:todo_id>", methods=["PATCH"])
+@app.route("/update/<int:todo_id>", methods=["PUT"])
 def update(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
