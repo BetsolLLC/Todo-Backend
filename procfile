@@ -1,0 +1,2 @@
+web: export FLASK_APP = static
+web: flask run
