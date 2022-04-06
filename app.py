@@ -60,7 +60,7 @@ def add():
     return {"message":"successfully created"}, 200
 
 
-@app.route("/update/<int:todo_id>")
+@app.route("/update/<int:todo_id>"methods=["PUT"])
 def update(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
@@ -68,7 +68,7 @@ def update(todo_id):
     return {"message":"successfully completed"}, 200
 
 
-@app.route("/delete/<int:todo_id>")
+@app.route("/delete/<int:todo_id>",methods=["DELETE"])
 def delete(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)
