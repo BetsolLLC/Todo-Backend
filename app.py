@@ -53,7 +53,7 @@ def home():
 
 @app.route("/add", methods=["POST"])
 def add():
-    title = request.form.get("title")
+    title = request.form.get("title") or request.get_json(force=True)['title']
     new_todo = Todo(title=title, complete=False)
     db.session.add(new_todo)
     db.session.commit()
@@ -62,7 +62,7 @@ def add():
 
 @app.route("/update/<int:todo_id>", methods=["PATCH"])
 def update(todo_id):
-    todo = Todo.query.filter_by(id=todo_id).first()
+    todo = Todo.query.filter_by(id=todo_id).first() or request.get_json(force=True)['title']
     todo.complete = not todo.complete
     db.session.commit()
     return {"message":"successfully completed"}, 200
@@ -70,16 +70,16 @@ def update(todo_id):
 
 @app.route("/delete/<int:todo_id>", methods=["DELETE"])
 def delete(todo_id):
-    todo = Todo.query.filter_by(id=todo_id).first()
+    todo = Todo.query.filter_by(id=todo_id).first() or request.get_json(force=True)['title']
     db.session.delete(todo)
     db.session.commit()
     return {"message":"successfully deleted"}, 200
 
-@app.route("/edit", method=['PUT'])
+@app.route("/edit", methods=['PUT'])
 def edit():
-    todo_id = request.form.get("todo_id") or request.form.get("todo_id")
-    title = request.form.get("title") or request.form.get("title")
-    todo = Todo.get_by_id(todo_id)
+    todo_id = request.form.get("todo_id") or request.get_json(force=True)['title']
+    title = request.form.get("title")  or request.get_json(force=True)['title']
+    todo = Todo.query.get(todo_id) or request.get_json(force=True)['title']
     todo.title = title
     db.session.commit()
     return {"message": "successfully updated task"}, 200
