@@ -38,7 +38,4 @@ class Todo(db.Model):
 
     @staticmethod
     def update_complete(task_id):
-        todo = Todo.get_by_id(task_id)
-        todo.complete = True
-        db.session.commit()
-        return todo
+        pass

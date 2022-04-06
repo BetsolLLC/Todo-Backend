@@ -467,3 +467,4 @@ Traceback (most recent call last):
 sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
 
 (Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-04-06 12:26:28,179 - static.todoApp.views.todo_list_view - DEBUG - serialize_instance called here

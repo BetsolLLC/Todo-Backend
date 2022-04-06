@@ -37,11 +37,7 @@ class TodoListView(Resource):
         return {"message": "successfully updated task"}, 200
  
     def patch(self):
-        todo_id = request.form.get("todo_id") or request.form.get("todo_id")
-        Todo.update_complete(todo_id)
-        logger.info("Task Completed")
-        # return redirect(url_for("home"))
-        return {"message": "successfully completed task"}, 200
+        pass
 
     def delete(self):
         todo_id = request.form.get("todo_id") or request.form.get("todo_id")
