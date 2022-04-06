@@ -62,7 +62,7 @@ git config --global user.email "<name@example.com>"
 
 
 
-##  **Installation and setup of Postgress:**
+##  **Installation and setup of Postgres:**
 
 - **Go to:  [PostgreSQL: The world's most advanced open source database](https://www.postgresql.org/)**
 
@@ -141,6 +141,8 @@ pip install virtualenv
 ```
 virtualenv\_name/bin/activate
 ```
+![1](https://user-images.githubusercontent.com/102720146/161898687-7a76cb01-0b71-46f4-bad4-fa7a825400ee.PNG)
+
 
 ## **Installing Postman:**
 
