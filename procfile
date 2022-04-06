@@ -1,1 +1,1 @@
-web: FLASK_APP = static flask run
+web: gunicorn static:app
