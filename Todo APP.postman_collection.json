@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4a800a6f-8d9c-4cc6-8c28-f27ded6d15ed",
+		"_postman_id": "05273951-c8b4-43a6-b083-bca0926ffb13",
 		"name": "Todo APP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -500,7 +500,10 @@
 							"name": "Get all tasks Empty",
 							"originalRequest": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -944,129 +947,6 @@
 				}
 			],
 			"description": "Https Methods to be used on heroku deployement server"
-		},
-		{
-			"name": "Prototype Deployement",
-			"item": [
-				{
-					"name": "https://todo-app-ayush.herokuapp.com/1",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "https://todo-app-ayush.herokuapp.com/1",
-							"protocol": "https",
-							"host": [
-								"todo-app-ayush",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "https://todo-app-ayush.herokuapp.com/",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"zyzz\",\r\n    \"completed\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://todo-app-ayush.herokuapp.com/",
-							"protocol": "https",
-							"host": [
-								"todo-app-ayush",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "https://todo-app-ayush.herokuapp.com/",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://todo-app-ayush.herokuapp.com/",
-							"protocol": "https",
-							"host": [
-								"todo-app-ayush",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "https://todo-app-ayush.herokuapp.com/add",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"title\": \"zyzz\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://todo-app-ayush.herokuapp.com/",
-							"protocol": "https",
-							"host": [
-								"todo-app-ayush",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "https://todo-app-ayush.herokuapp.com/delete/1",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://todo-app-ayush.herokuapp.com/1",
-							"protocol": "https",
-							"host": [
-								"todo-app-ayush",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
 		}
 	]
 }
