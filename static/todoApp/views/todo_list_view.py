@@ -1,11 +1,10 @@
-from flask import request, jsonify
+import logging
 
+from flask import request, jsonify
 from flask_restful import Resource
-from flask_sqlalchemy import SQLAlchemy
-from static import cors
+
 from static.todoApp.model.todo_list_model import Todo
 from static.todoApp.utils.serialize_data import TodoListSerializer
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +13,7 @@ class TodoListView(Resource):
 
     def get(self):
         try:
-            serialize_instance = TodoListSerializer(Todo.get_all(),model_type="todo",many=True)
+            serialize_instance = TodoListSerializer(Todo.get_all(), model_type="todo", many=True)
             logger.debug(f"serialize_instance called here")
             if serialize_instance.is_valid():
                 data = {
@@ -43,9 +42,10 @@ class TodoListView(Resource):
             logger.error(f"Error: {e}")
             return {"message": "something went wrong"}, 500
 
-    def put(self):
+    def put(self, todo_id):
         try:
             data = request.get_json(force=True)
+            data["id"] = todo_id
             serializer = TodoListSerializer(data, model_type="dict")
             if serializer.is_valid():
                 parsed_data = serializer.data()
@@ -65,11 +65,10 @@ class TodoListView(Resource):
         TODO : Implement PATCH method
         :return:
         """
-        pass
+        return {"message": "PATCH method not implemented"}, 501
 
-    def delete(self):
+    def delete(self, todo_id):
         try:
-            todo_id = request.get_json(force=True)['id']
             Todo.delete(todo_id)
             return {"message": "successfully deleted task"}, 200
         except KeyError:
@@ -79,4 +78,3 @@ class TodoListView(Resource):
         except Exception as e:
             logger.error(f"Error: {e}")
             return {"message": "something went wrong"}, 500
-
