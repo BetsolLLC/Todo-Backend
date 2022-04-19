@@ -23,9 +23,13 @@ class Todo(db.Model):
         return todo
 
     @staticmethod
-    def update(task_id, title):
+    def update(task_id, title, completed):
         todo = Todo.get_by_id(task_id)
+        if todo is None :
+            raise ValueError("Todo with the given id not found")
         todo.title = title
+        todo.date_modified = db.func.current_timestamp()
+        todo.complete = completed
         db.session.commit()
         return todo
 
@@ -40,5 +44,6 @@ class Todo(db.Model):
     def update_complete(task_id):
         todo = Todo.get_by_id(task_id)
         todo.complete = True
+        todo.date_modified = db.func.current_timestamp()
         db.session.commit()
         return todo
