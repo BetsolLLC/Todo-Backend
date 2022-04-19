@@ -60,7 +60,7 @@ class TodoListView(Resource):
             logger.error(f"Error: {e}")
             return {"message": "something went wrong"}, 500
 
-    def patch(self):
+    def patch(self,todo_id):
         """
         TODO : Implement PATCH method
         :return:
