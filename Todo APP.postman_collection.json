@@ -1,0 +1,1072 @@
+{
+	"info": {
+		"_postman_id": "4a800a6f-8d9c-4cc6-8c28-f27ded6d15ed",
+		"name": "Todo APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Local Deployment",
+			"item": [
+				{
+					"name": "Get all tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all tasks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/v1/",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.1.0 Python/3.9.12"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Apr 2022 08:30:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "325"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"todo_list\": [\n        {\n            \"completed\": false,\n            \"date_modified\": \"Thu, 31 Mar 2022 17:48:28 GMT\",\n            \"id\": 2,\n            \"title\": \"Hey Ayush\"\n        },\n        {\n            \"completed\": false,\n            \"date_modified\": \"Mon, 04 Apr 2022 13:04:58 GMT\",\n            \"id\": 4,\n            \"title\": \"Hey I need to have llunch now\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Add new Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Going to have lunch now\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add new Task",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Hey I need to have dinner at 9pm",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										""
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.1.0 Python/3.9.12"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Apr 2022 08:31:12 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"successfully added task\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit added Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Added a new item called drinks\",\r\n    \"completed\": \"False\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/15",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"15"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit added Task Error Case",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "todo_id",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Added a new item called drinks",
+											"type": "text"
+										},
+										{
+											"key": "complete",
+											"value": "False",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										""
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.1.0 Python/3.9.12"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Apr 2022 08:45:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Todo with the request id not found\"\n}"
+						},
+						{
+							"name": "Edit added Task Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "todo_id",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Added a new item called drinks",
+											"type": "text"
+										},
+										{
+											"key": "complete",
+											"value": "False",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.1.0 Python/3.9.12"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Apr 2022 09:11:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"successfully updated task\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete added task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/15",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"15"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete added task Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "todo_id",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.1.0 Python/3.9.12"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Mar 2022 20:12:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"successfully deleted task\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Complete added task",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "todo_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "complete added task Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "todo_id",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.1.0 Python/3.9.12"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Mar 2022 12:23:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"successfully completed task\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Remote Deployment",
+			"item": [
+				{
+					"name": "Get all tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://flask-class-based-hitesh.herokuapp.com/api/v1/",
+							"protocol": "https",
+							"host": [
+								"flask-class-based-hitesh",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all tasks Empty",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Apr 2022 18:37:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "17"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"todo_list\": []\n}"
+						},
+						{
+							"name": "Get all tasks Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://flask-class-based-hitesh.herokuapp.com",
+									"protocol": "https",
+									"host": [
+										"flask-class-based-hitesh",
+										"herokuapp",
+										"com"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Apr 2022 20:09:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "226"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"todo_list\": [\n        {\n            \"completed\": false,\n            \"date_modified\": \"Wed, 06 Apr 2022 18:46:55 GMT\",\n            \"id\": 2,\n            \"title\": \"Need to sleep\"\n        },\n        {\n            \"completed\": false,\n            \"date_modified\": \"Wed, 06 Apr 2022 20:03:11 GMT\",\n            \"id\": 3,\n            \"title\": \"need to go to sleep badly\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Add new Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"I need play spotify\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://flask-class-based-hitesh.herokuapp.com/api/v1/",
+							"protocol": "https",
+							"host": [
+								"flask-class-based-hitesh",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add new task",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"I need to have lunch now\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://flask-class-based-hitesh.herokuapp.com/api/v1/",
+									"protocol": "https",
+									"host": [
+										"flask-class-based-hitesh",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										""
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Apr 2022 18:39:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"successfully added task\"\n}"
+						},
+						{
+							"name": "Add new Task Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"I need to sleep now\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://flask-class-based-hitesh.herokuapp.com",
+									"protocol": "https",
+									"host": [
+										"flask-class-based-hitesh",
+										"herokuapp",
+										"com"
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Apr 2022 20:10:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Todo created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit added Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Added a new item called drinks\",\r\n    \"completed\": \"False\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://flask-class-based-hitesh.herokuapp.com/api/v1/16",
+							"protocol": "https",
+							"host": [
+								"flask-class-based-hitesh",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"16"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit added Task Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Added a new item called drinks\",\r\n    \"completed\": \"False\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://flask-class-based-hitesh.herokuapp.com/2",
+									"protocol": "https",
+									"host": [
+										"flask-class-based-hitesh",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Apr 2022 20:10:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Todo updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete added task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://flask-class-based-hitesh.herokuapp.com/api/v1/16",
+							"protocol": "https",
+							"host": [
+								"flask-class-based-hitesh",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"16"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE SUCCESS",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://flask-class-based-hitesh.herokuapp.com/4",
+									"protocol": "https",
+									"host": [
+										"flask-class-based-hitesh",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Apr 2022 20:12:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Todo deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Complete added Task",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://flask-class-based-hitesh.herokuapp.com/api/v1/1",
+							"protocol": "https",
+							"host": [
+								"flask-class-based-hitesh",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Https Methods to be used on heroku deployement server"
+		},
+		{
+			"name": "Prototype Deployement",
+			"item": [
+				{
+					"name": "https://todo-app-ayush.herokuapp.com/1",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://todo-app-ayush.herokuapp.com/1",
+							"protocol": "https",
+							"host": [
+								"todo-app-ayush",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://todo-app-ayush.herokuapp.com/",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"zyzz\",\r\n    \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://todo-app-ayush.herokuapp.com/",
+							"protocol": "https",
+							"host": [
+								"todo-app-ayush",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://todo-app-ayush.herokuapp.com/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://todo-app-ayush.herokuapp.com/",
+							"protocol": "https",
+							"host": [
+								"todo-app-ayush",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://todo-app-ayush.herokuapp.com/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\": \"zyzz\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://todo-app-ayush.herokuapp.com/",
+							"protocol": "https",
+							"host": [
+								"todo-app-ayush",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://todo-app-ayush.herokuapp.com/delete/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://todo-app-ayush.herokuapp.com/1",
+							"protocol": "https",
+							"host": [
+								"todo-app-ayush",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
